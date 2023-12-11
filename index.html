@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Airline Logos</title>
+<style>
+  .airline-group {
+    margin-bottom: 20px;
+  }
+  .airline-logo {
+    margin-right: 10px;
+  }
+</style>
+</head>
+<body>
+<div id="logos-container"></div>
+
+<script>
+
+// Function to load logos
+function loadLogos() {
+// Function to fetch and display logos from GitHub repository
+function fetchAndDisplayLogos() {
+  const baseRepoUrl = 'https://api.github.com/repos/Jxck-S/airline-logos/contents/';
+  const folders = ['avcodes_banners', 'flightaware_logos', 'fr24_logos', 'radarbox_banners', 'radarbox_logos'];
+  const container = document.getElementById('logos-container');
+
+  folders.forEach(folder => {
+    fetch(`${baseRepoUrl}${folder}`)
+      .then(response => response.json())
+      .then(files => {
+        files.forEach(file => {
+          if (file.type === 'file') {
+            const airlineCode = file.name.split('.')[0]; // Assuming the file name is the airline code
+            let airlineDiv = container.querySelector(`#airline-${airlineCode}`);
+            if (!airlineDiv) {
+              airlineDiv = document.createElement('div');
+              airlineDiv.id = `airline-${airlineCode}`;
+              airlineDiv.classList.add('airline-group');
+              airlineDiv.innerHTML = `<h2>${airlineCode}</h2>`;
+              container.appendChild(airlineDiv);
+            }
+            const img = new Image();
+            img.src = file.download_url;
+            img.classList.add('airline-logo');
+            airlineDiv.appendChild(img);
+          }
+        });
+      })
+      .catch(error => console.error('Error fetching directory:', error));
+  });
+}
+
+// Load logos when the window loads
+window.onload = fetchAndDisplayLogos;
+}
+
+// Load logos when the window loads
+window.onload = loadLogos;
+</script>
+</body>
+</html>
