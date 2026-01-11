@@ -1,0 +1,171 @@
+:root {
+    --bg-color: #0f172a;
+    /* Slate 900 */
+    --card-bg: rgba(30, 41, 59, 0.7);
+    /* Slate 800 with opacity */
+    --text-color: #f1f5f9;
+    /* Slate 100 */
+    --accent-color: #3b82f6;
+    /* Blue 500 */
+    --border-color: rgba(148, 163, 184, 0.1);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+}
+
+.repo-info {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
+.repo-info a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0 5px;
+    transition: color 0.2s;
+}
+
+.repo-info a:hover {
+    color: #60a5fa;
+    text-decoration: underline;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    /* standard property */
+    -webkit-text-fill-color: transparent;
+}
+
+.controls {
+    max-width: 800px;
+    margin: 0 auto 30px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+input[type="text"] {
+    flex: 1;
+    min-width: 200px;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: white;
+    font-size: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+/* Gallery Grid - Holds Group Cards */
+#gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Group Card - One per Airline Code */
+.group-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 20px;
+    backdrop-filter: blur(12px);
+}
+
+.group-header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+/* Variants Grid - Holds individual images inside a group */
+.variants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.variant-item {
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 10px;
+    transition: transform 0.2s;
+}
+
+.variant-item:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.variant-img-wrapper {
+    background: white;
+    width: 100%;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.variant-img-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.variant-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+}
+
+.badgelabel {
+    background: var(--accent-color);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.7rem;
+}
+
+.variant-source {
+    color: #94a3b8;
+}
+
+.loading {
+    text-align: center;
+    width: 100%;
+    font-size: 1.2rem;
+    color: #94a3b8;
+    margin-top: 50px;
+}
