@@ -1,6 +1,17 @@
 {
     "N711PV": {
         "has_banner": true,
-        "has_logo": true
+        "has_logo": true,
+        "name": "GRRGLOBAL"
+    }, 
+    "CFXOO": {
+        "has_banner": true,
+        "has_logo": true,
+        "name": "LTT"
+    },
+    "N154TS": {
+        "has_banner": true,
+        "has_logo": true,
+        "name": "SpaceX"
     }
 }
