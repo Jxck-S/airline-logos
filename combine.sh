@@ -1,20 +1,22 @@
 #!/bin/bash
 
 # Output directories
-logos_out="./combined_out/logos"
-banners_out="./combined_out/banners"
+logos_out="./out/combined/logos"
+banners_out="./out/combined/banners"
+custom_out="./out/custom"
+custom_logos_out="$custom_out/logos"
+custom_banners_out="$custom_out/banners"
 
 # Combine logos
 echo "Combining logos..."
 mkdir -p "$logos_out"
+mkdir -p "$custom_logos_out"
 
-# Custom Aircraft (Highest Priority)
-echo "Adding custom_aircraft logos..."
-for d in ./custom_aircraft/*; do
-    if [ -d "$d/logos" ]; then
-        cp -rn "$d/logos/"* "$logos_out/" 2>/dev/null
-    fi
-done
+# Custom Aircraft (Separate Output)
+echo "Adding custom_aircraft logos to custom_out..."
+if [ -d "./custom_aircraft/logos" ]; then
+    cp -rn ./custom_aircraft/logos/* "$custom_logos_out/"
+fi
 
 # Custom logos first
 echo "Adding custom_logos..."
@@ -31,14 +33,17 @@ cp -rn ./radarbox_logos/* "$logos_out/"
 # Combine banners
 echo "Combining banners..."
 mkdir -p "$banners_out"
+mkdir -p "$custom_banners_out"
 
-# Custom Aircraft banners (Highest Priority)
-echo "Adding custom_aircraft banners..."
-for d in ./custom_aircraft/*; do
-    if [ -d "$d/banners" ]; then
-        cp -rn "$d/banners/"* "$banners_out/" 2>/dev/null
-    fi
-done
+# Custom Aircraft banners (Separate Output)
+echo "Adding custom_aircraft banners to custom_out..."
+if [ -d "./custom_aircraft/banners" ]; then
+    cp -rn ./custom_aircraft/banners/* "$custom_banners_out/"
+fi
+
+# Copy index.json to custom_out
+echo "Copying index.json to custom_out..."
+cp ./custom_aircraft/index.json "$custom_out/index.json"
 
 # Custom banners first
 echo "Adding custom_banners..."
@@ -60,3 +65,4 @@ cp -rn ./radarbox_banners/* "$banners_out/"
 echo "Combining process complete."
 echo "Logos:   $logos_out"
 echo "Banners: $banners_out"
+echo "Custom:  $custom_out"
